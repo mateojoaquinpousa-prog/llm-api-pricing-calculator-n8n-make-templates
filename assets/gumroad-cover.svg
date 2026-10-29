@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b0f19"/>
+      <stop offset="50%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#1e1b4b"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <rect x="60" y="60" width="1160" height="600" rx="24" fill="none" stroke="url(#accent)" stroke-width="3" opacity="0.6"/>
+  <rect x="110" y="120" width="430" height="44" rx="22" fill="#1f2937" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="325" y="148" fill="#a5b4fc" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle">INSTANT DOWNLOAD • B2B AUTOMATION VAULT</text>
+  <text x="110" y="245" fill="#ffffff" font-family="Arial, sans-serif" font-size="56" font-weight="bold">The Ultimate AI Agency</text>
+  <text x="110" y="315" fill="#34d399" font-family="Arial, sans-serif" font-size="56" font-weight="bold">&amp; Automation Vault (2026)</text>
+  <text x="110" y="385" fill="#d1d5db" font-family="Arial, sans-serif" font-size="24">• 10 Ready-to-Import n8n &amp; Make.com JSON Blueprints</text>
+  <text x="110" y="430" fill="#d1d5db" font-family="Arial, sans-serif" font-size="24">• 50 XML-Structured Enterprise B2B Prompt Systems</text>
+  <text x="110" y="475" fill="#d1d5db" font-family="Arial, sans-serif" font-size="24">• Client ROI &amp; Retainer Pricing Calculator Spreadsheet</text>
+  <text x="110" y="520" fill="#d1d5db" font-family="Arial, sans-serif" font-size="24">• 3-Tier High-Ticket B2B Proposal &amp; Sprint Playbook</text>
+  <rect x="110" y="560" width="320" height="64" rx="14" fill="#10b981"/>
+  <text x="270" y="601" fill="#052e16" font-family="Arial, sans-serif" font-size="26" font-weight="bold" text-anchor="middle">ONLY $29 USD (Save 70%)</text>
+</svg>

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ai-roi-hub.pages.dev/sitemap.xml
