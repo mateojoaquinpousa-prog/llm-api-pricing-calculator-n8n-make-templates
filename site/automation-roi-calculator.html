@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Automation ROI & Labor Cost Savings Calculator (2026)</title>
+  <meta name="description" content="Calculate annual payroll savings, hours reclaimed, and net ROI from deploying Make.com, n8n, and LLM API automations.">
+  <link rel="canonical" href="https://ai-roi-hub.pages.dev/automation-roi-calculator.html">
+  <meta property="og:title" content="AI Automation ROI & Labor Cost Savings Calculator (2026)">
+  <meta property="og:description" content="Calculate annual payroll savings, hours reclaimed, and net ROI from deploying Make.com, n8n, and LLM API automations.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ai-roi-hub.pages.dev/automation-roi-calculator.html">
+  <link rel="stylesheet" href="assets/style.css">
+  
+</head>
+<body>
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand">⚡ <span>AI ROI & Automation Hub</span></a>
+      <nav class="nav-links">
+        <a href="index.html">LLM Cost Calculator</a>
+        <a href="automation-roi-calculator.html">Automation ROI</a>
+        <a href="system-prompt-architect.html">Prompt Architect</a>
+        <a href="json-schema-builder.html">JSON Schema</a>
+        <a href="agency-pricing-calculator.html">Agency Pricing</a>
+        <a href="free-templates.html">Free Templates</a>
+        <a href="comparisons.html">Model Benchmarks</a>
+        <a href="https://mateopousa.gumroad.com/l/ai-automation-vault" target="_blank" rel="noopener" class="btn btn-accent" style="padding:0.4rem 0.85rem; font-size:0.84rem">Get B2B Vault ($29)</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    
+    <section class="hero">
+      <span class="badge">B2B AUTOMATION ROI SIMULATOR</span>
+      <h1>Business AI Automation ROI &amp; Labor Savings Calculator</h1>
+      <p>Calculate exactly how much manual payroll your company or agency clients save every year by migrating repetitive processes to <strong>n8n / Make.com + LLM APIs</strong>.</p>
+    </section>
+
+    <div class="grid grid-2">
+      <div class="card">
+        <h2>1. Manual Process Inputs</h2>
+        <div class="form-group">
+          <label for="tasksMonth">Number of Tasks Executed per Month</label>
+          <input type="number" id="tasksMonth" class="input" value="800" min="1">
+        </div>
+        <div class="form-group">
+          <label for="minsPerTask">Manual Minutes per Task</label>
+          <input type="number" id="minsPerTask" class="input" value="15" min="1">
+        </div>
+        <div class="form-group">
+          <label for="hourlyWage">Team Member Fully-Loaded Hourly Cost ($ USD)</label>
+          <input type="number" id="hourlyWage" class="input" value="35" min="1">
+        </div>
+        <div class="form-group">
+          <label for="automationPct">% of Task Automated by AI Agent</label>
+          <input type="number" id="automationPct" class="input" value="85" min="10" max="100">
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>2. Verified Annual ROI Breakdown</h2>
+        <div class="grid grid-2" style="margin-top:0.8rem">
+          <div class="kpi-box">
+            <div class="kpi-lbl">Net Annual Dollar Savings</div>
+            <div class="kpi-val" id="annualSavings">$71,100</div>
+            <div style="font-size:0.85rem; color:#d1d5db">After API &amp; Make/n8n Costs</div>
+          </div>
+          <div class="kpi-box">
+            <div class="kpi-lbl">Hours Reclaimed / Year</div>
+            <div class="kpi-val" id="hoursSaved">2,040 hrs</div>
+            <div style="font-size:0.85rem; color:#d1d5db">Equivalent to 1.0 FTE Staff</div>
+          </div>
+        </div>
+        <div style="margin-top:1.25rem; padding:1rem; background:var(--bg-elevated); border-radius:0.65rem">
+          <div style="display:flex; justify-content:space-between; margin-bottom:0.4rem">
+            <span>Current Manual Monthly Cost:</span>
+            <strong id="manualMonthly">$7,000/mo</strong>
+          </div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:0.4rem">
+            <span>Est. Make.com / n8n + LLM API Cost:</span>
+            <strong id="aiMonthlyCost" style="color:#34d399">$29/mo</strong>
+          </div>
+          <div style="display:flex; justify-content:space-between">
+            <span>Net Monthly Profit Impact:</span>
+            <strong id="netMonthly" style="color:#34d399">$5,921/mo</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section style="margin-top:2.5rem">
+      <h2 style="margin-bottom:1rem">Pre-Built Industry Automation ROI Benchmarks</h2>
+      <div class="grid grid-3">
+        
+        <div class="card">
+          <span class="badge">MAKE BLUEPRINT</span>
+          <h3><a href="blueprints/lead-qualification-enrichment.html">Inbound Lead Qualification & CRM Enrichment</a></h3>
+          <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1rem">Automatically scrape prospect company websites, score ICP fit with an LLM, draft personalized outreach, and sync to HubSpot/Pipedrive.</p>
+          <div style="font-size:0.85rem; margin-bottom:1rem">
+            ⏱️ Manual: <strong>15 min/task</strong> • Volume: <strong>400/mo</strong>
+          </div>
+          <a href="blueprints/lead-qualification-enrichment.html" class="btn btn-outline" style="width:100%">Calculate Specific ROI &rarr;</a>
+        </div>
+        <div class="card">
+          <span class="badge">N8N BLUEPRINT</span>
+          <h3><a href="blueprints/invoice-pdf-data-extraction.html">Automated PDF Invoice & Receipt OCR to Accounting</a></h3>
+          <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1rem">Extract line items, tax IDs, and totals from messy PDF invoices via multimodal vision and push structured JSON to QuickBooks or Xero.</p>
+          <div style="font-size:0.85rem; margin-bottom:1rem">
+            ⏱️ Manual: <strong>8 min/task</strong> • Volume: <strong>1200/mo</strong>
+          </div>
+          <a href="blueprints/invoice-pdf-data-extraction.html" class="btn btn-outline" style="width:100%">Calculate Specific ROI &rarr;</a>
+        </div>
+        <div class="card">
+          <span class="badge">CUSTOMGPT BLUEPRINT</span>
+          <h3><a href="blueprints/customer-support-rag-triage.html">Tier-1 Customer Support RAG Triage & Auto-Drafting</a></h3>
+          <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1rem">Classify incoming Zendesk/Intercom tickets, query your internal knowledge base via RAG, and resolve 70% of Tier-1 questions automatically.</p>
+          <div style="font-size:0.85rem; margin-bottom:1rem">
+            ⏱️ Manual: <strong>12 min/task</strong> • Volume: <strong>1500/mo</strong>
+          </div>
+          <a href="blueprints/customer-support-rag-triage.html" class="btn btn-outline" style="width:100%">Calculate Specific ROI &rarr;</a>
+        </div>
+        <div class="card">
+          <span class="badge">MAKE BLUEPRINT</span>
+          <h3><a href="blueprints/seo-content-research-pipeline.html">Programmatic B2B Blog & Case Study Production</a></h3>
+          <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1rem">Research SERP competitors, build structured outlines, generate fact-checked technical articles, and publish drafts directly to WordPress/Webflow.</p>
+          <div style="font-size:0.85rem; margin-bottom:1rem">
+            ⏱️ Manual: <strong>180 min/task</strong> • Volume: <strong>30/mo</strong>
+          </div>
+          <a href="blueprints/seo-content-research-pipeline.html" class="btn btn-outline" style="width:100%">Calculate Specific ROI &rarr;</a>
+        </div>
+        <div class="card">
+          <span class="badge">SYNTHFLOW BLUEPRINT</span>
+          <h3><a href="blueprints/ai-voice-inbound-receptionist.html">24/7 AI Phone Receptionist & Appointment Booker</a></h3>
+          <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1rem">Answer inbound client phone calls in natural human voice, qualify urgency, check calendar availability, and book appointments via SMS.</p>
+          <div style="font-size:0.85rem; margin-bottom:1rem">
+            ⏱️ Manual: <strong>10 min/task</strong> • Volume: <strong>600/mo</strong>
+          </div>
+          <a href="blueprints/ai-voice-inbound-receptionist.html" class="btn btn-outline" style="width:100%">Calculate Specific ROI &rarr;</a>
+        </div>
+        <div class="card">
+          <span class="badge">N8N BLUEPRINT</span>
+          <h3><a href="blueprints/meeting-transcript-action-sync.html">Sales Call Transcript to CRM & Slack Action Items</a></h3>
+          <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1rem">Ingest 60-minute Zoom/Fireflies call transcripts, extract MEDDIC sales objections, update CRM deal stages, and draft follow-up emails.</p>
+          <div style="font-size:0.85rem; margin-bottom:1rem">
+            ⏱️ Manual: <strong>25 min/task</strong> • Volume: <strong>160/mo</strong>
+          </div>
+          <a href="blueprints/meeting-transcript-action-sync.html" class="btn btn-outline" style="width:100%">Calculate Specific ROI &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      function calcRoi() {
+        const tasks = parseFloat(document.getElementById('tasksMonth').value) || 0;
+        const mins = parseFloat(document.getElementById('minsPerTask').value) || 0;
+        const wage = parseFloat(document.getElementById('hourlyWage').value) || 0;
+        const pct = (parseFloat(document.getElementById('automationPct').value) || 85) / 100;
+
+        const monthlyHours = (tasks * mins) / 60;
+        const manualCost = monthlyHours * wage;
+        const savedHoursMo = monthlyHours * pct;
+        const grossSavedMo = manualCost * pct;
+        const estApiCost = Math.max(19, Math.round(tasks * 0.025));
+        const netMo = Math.max(0, grossSavedMo - estApiCost);
+        const netYear = netMo * 12;
+
+        document.getElementById('manualMonthly').textContent = '$' + Math.round(manualCost).toLocaleString() + '/mo';
+        document.getElementById('aiMonthlyCost').textContent = '$' + estApiCost.toLocaleString() + '/mo';
+        document.getElementById('netMonthly').textContent = '$' + Math.round(netMo).toLocaleString() + '/mo';
+        document.getElementById('annualSavings').textContent = '$' + Math.round(netYear).toLocaleString();
+        document.getElementById('hoursSaved').textContent = Math.round(savedHoursMo * 12).toLocaleString() + ' hrs';
+      }
+      ['tasksMonth', 'minsPerTask', 'hourlyWage', 'automationPct'].forEach(id => {
+        document.getElementById(id).addEventListener('input', calcRoi);
+      });
+      calcRoi();
+    </script>
+    
+    
+    <section class="vault-banner">
+      <div>
+        <span class="badge">INSTANT DOWNLOAD • 10 JSON WORKFLOWS + 50 B2B PROMPTS + EXCEL ROI SHEET</span>
+        <h3>🚀 Skip 40 Hours of Setup: Get The Ultimate AI Automation Vault</h3>
+        <p>Download <strong>10 ready-to-import n8n &amp; Make.com JSON workflows</strong>, <strong>50 XML B2B Prompt Systems</strong>, and our <strong>Agency ROI &amp; Pricing Spreadsheet</strong>.</p>
+      </div>
+      <div style="text-align:right">
+        <div style="margin-bottom:0.5rem">
+          <span class="price-strike">$97</span>
+          <span class="price-tag">$29 USD</span>
+        </div>
+        <a href="https://mateopousa.gumroad.com/l/ai-automation-vault" target="_blank" rel="noopener" class="btn btn-accent">Download Complete Vault &rarr;</a>
+      </div>
+    </section>
+    
+    
+    <section class="card" style="margin-top:1.5rem">
+      <h3>🔥 Recommended AI Automation Stack (Verified Free Tiers &amp; High ROI)</h3>
+      <div class="grid grid-3" style="margin-top:1rem">
+        <div style="padding:1rem; background:var(--bg-elevated); border-radius:0.6rem;">
+          <strong>Make.com</strong>
+          <p style="font-size:0.86rem; color:var(--text-muted); margin:0.4rem 0 0.8rem">Visual No-Code AI Automation Platform (1,000 Free Ops/mo)</p>
+          <a href="https://www.make.com/en/register?pc=airoihub" target="_blank" rel="noopener sponsored" class="btn btn-primary" style="width:100%">Try Make.com Free (1,000 Ops)</a>
+        </div>
+        <div style="padding:1rem; background:var(--bg-elevated); border-radius:0.6rem;">
+          <strong>n8n Cloud</strong>
+          <p style="font-size:0.86rem; color:var(--text-muted); margin:0.4rem 0 0.8rem">Fair-Code Workflow Automation with Native AI Agents</p>
+          <a href="https://n8n.io/?ref=airoihub" target="_blank" rel="noopener sponsored" class="btn btn-primary" style="width:100%">Launch n8n AI Agents</a>
+        </div>
+        <div style="padding:1rem; background:var(--bg-elevated); border-radius:0.6rem;">
+          <strong>CustomGPT.ai</strong>
+          <p style="font-size:0.86rem; color:var(--text-muted); margin:0.4rem 0 0.8rem">Build No-Code RAG Custom Chatbots on Your Business Data</p>
+          <a href="https://customgpt.ai/?fpr=airoihub" target="_blank" rel="noopener sponsored" class="btn btn-primary" style="width:100%">Build Custom RAG Bot</a>
+        </div>
+      </div>
+    </section>
+    
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem">
+      <div>
+        <strong>AI ROI & Automation Hub</strong> — Free Enterprise AI Calculators, Token Pricing Benchmarks & Automation Blueprints<br>
+        <span>Updated for 2026 LLM API Pricing (OpenAI, Anthropic, Google Gemini, DeepSeek, Meta).</span>
+      </div>
+      <div style="display:flex; gap:1.25rem; flex-wrap:wrap">
+        <a href="index.html">Token Calculator</a>
+        <a href="automation-roi-calculator.html">ROI Calculator</a>
+        <a href="comparisons.html">All 66 Model Comparisons</a>
+        <a href="sitemap.xml">Sitemap</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

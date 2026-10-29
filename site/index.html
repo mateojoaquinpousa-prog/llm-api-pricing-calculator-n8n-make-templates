@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LLM API Pricing & Token Cost Calculator (2026) — OpenAI, Claude, Gemini, DeepSeek</title>
+  <meta name="description" content="Free interactive LLM API token cost calculator. Compare monthly pricing with prompt caching across GPT-4o, Claude 3.5 Sonnet, Gemini 2.5 Pro, and DeepSeek.">
+  <link rel="canonical" href="https://ai-roi-hub.pages.dev/index.html">
+  <meta property="og:title" content="LLM API Pricing & Token Cost Calculator (2026) — OpenAI, Claude, Gemini, DeepSeek">
+  <meta property="og:description" content="Free interactive LLM API token cost calculator. Compare monthly pricing with prompt caching across GPT-4o, Claude 3.5 Sonnet, Gemini 2.5 Pro, and DeepSeek.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ai-roi-hub.pages.dev/index.html">
+  <link rel="stylesheet" href="assets/style.css">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "LLM API Token & Monthly Cost Calculator", "applicationCategory": "BusinessApplication", "operatingSystem": "Web", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}</script>
+</head>
+<body>
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand">⚡ <span>AI ROI & Automation Hub</span></a>
+      <nav class="nav-links">
+        <a href="index.html">LLM Cost Calculator</a>
+        <a href="automation-roi-calculator.html">Automation ROI</a>
+        <a href="system-prompt-architect.html">Prompt Architect</a>
+        <a href="json-schema-builder.html">JSON Schema</a>
+        <a href="agency-pricing-calculator.html">Agency Pricing</a>
+        <a href="free-templates.html">Free Templates</a>
+        <a href="comparisons.html">Model Benchmarks</a>
+        <a href="https://mateopousa.gumroad.com/l/ai-automation-vault" target="_blank" rel="noopener" class="btn btn-accent" style="padding:0.4rem 0.85rem; font-size:0.84rem">Get B2B Vault ($29)</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    
+    <section class="hero">
+      <span class="badge">LIVE 2026 API PRICING BENCHMARK</span>
+      <h1>LLM API Token &amp; Monthly Cost Calculator</h1>
+      <p>Compare real-time monthly API costs across <strong>GPT-4o, Claude 3.5 Sonnet, Gemini 2.5 Pro, DeepSeek V3 &amp; R1</strong> with prompt caching discounts.</p>
+    </section>
+
+    <div class="grid grid-2">
+      <div class="card">
+        <h2>1. Configure Your Workload</h2>
+        <div class="form-group">
+          <label for="runsPerDay">Workflow Executions / API Calls per Day</label>
+          <input type="number" id="runsPerDay" class="input" value="1000" min="1">
+        </div>
+        <div class="form-group">
+          <label for="inputTokens">Average Input Tokens per Call (System Prompt + Context)</label>
+          <input type="number" id="inputTokens" class="input" value="2500" min="1">
+        </div>
+        <div class="form-group">
+          <label for="outputTokens">Average Output Tokens per Call (Response)</label>
+          <input type="number" id="outputTokens" class="input" value="600" min="1">
+        </div>
+        <div class="form-group">
+          <label for="cacheHitPct">Prompt Cache Hit Rate (% of Input Tokens Cached)</label>
+          <input type="range" id="cacheHitPct" min="0" max="95" value="50" style="width:100%">
+          <div style="display:flex; justify-content:space-between; font-size:0.82rem; color:var(--text-muted)">
+            <span>0% (No Caching)</span>
+            <strong id="cacheHitLabel" style="color:#fff">50% Cached</strong>
+            <span>95% Cached</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>2. Instant Cost Optimization Summary</h2>
+        <div class="grid grid-2" style="margin-top:0.8rem">
+          <div class="kpi-box">
+            <div class="kpi-lbl">Lowest Cost Model</div>
+            <div class="kpi-val" id="cheapestName">Gemini 2.0 Flash</div>
+            <div id="cheapestCost" style="font-size:0.9rem; color:#d1d5db">$0.00 / mo</div>
+          </div>
+          <div class="kpi-box">
+            <div class="kpi-lbl">Monthly Token Volume</div>
+            <div class="kpi-val" id="totalMonthlyTokens">93.0M</div>
+            <div style="font-size:0.9rem; color:#d1d5db">Input + Output / 30 days</div>
+          </div>
+        </div>
+        <div style="margin-top:1.25rem; padding:1rem; background:var(--bg-elevated); border-radius:0.65rem; font-size:0.9rem">
+          <strong>💡 Pro Tip for n8n &amp; Make.com Users:</strong> Structure your static instructions at the top of your prompt to unlock up to <strong>90% prompt caching discounts</strong> on Claude 3.5 and Gemini 2.5, or download our <strong>50 XML Prompt Vault</strong> below.
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:1.5rem">
+      <h2>3. Full Model-by-Model Monthly Cost Breakdown (30 Days)</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Model &amp; Provider</th>
+              <th>Input / 1M</th>
+              <th>Cached Input / 1M</th>
+              <th>Output / 1M</th>
+              <th>Context Window</th>
+              <th>Est. Monthly Cost (USD)</th>
+            </tr>
+          </thead>
+          <tbody id="pricingTableBody">
+            
+        <tr data-model-id="gpt-4o">
+          <td><strong>GPT-4o</strong><br><span style="font-size:0.78rem; color:var(--text-muted)">OpenAI • Flagship Multimodal</span></td>
+          <td>$2.500</td>
+          <td>$1.250</td>
+          <td>$10.00</td>
+          <td>128,000</td>
+          <td class="calc-monthly" style="font-weight:700; color:#34d399">$0.00</td>
+        </tr>
+        <tr data-model-id="gpt-4o-mini">
+          <td><strong>GPT-4o mini</strong><br><span style="font-size:0.78rem; color:var(--text-muted)">OpenAI • High-Efficiency Workhorse</span></td>
+          <td>$0.150</td>
+          <td>$0.075</td>
+          <td>$0.60</td>
+          <td>128,000</td>
+          <td class="calc-monthly" style="font-weight:700; color:#34d399">$0.00</td>
+        </tr>
+        <tr data-model-id="o3-mini">
+          <td><strong>OpenAI o3-mini</strong><br><span style="font-size:0.78rem; color:var(--text-muted)">OpenAI • Reasoning & Coding</span></td>
+          <td>$1.100</td>
+          <td>$0.550</td>
+          <td>$4.40</td>
+          <td>200,000</td>
+          <td class="calc-monthly" style="font-weight:700; color:#34d399">$0.00</td>
+        </tr>
+        <tr data-model-id="claude-3-5-sonnet">
+          <td><strong>Claude 3.5 Sonnet</strong><br><span style="font-size:0.78rem; color:var(--text-muted)">Anthropic • Flagship Coding & Writing</span></td>
+          <td>$3.000</td>
+          <td>$0.300</td>
+          <td>$15.00</td>
+          <td>200,000</td>
+          <td class="calc-monthly" style="font-weight:700; color:#34d399">$0.00</td>
+        </tr>
+        <tr data-model-id="claude-3-5-haiku">
+          <td><strong>Claude 3.5 Haiku</strong><br><span style="font-size:0.78rem; color:var(--text-muted)">Anthropic • Fast Sub-Agent Model</span></td>
+          <td>$0.800</td>
+          <td>$0.080</td>
+          <td>$4.00</td>
+          <td>200,000</td>
+          <td class="calc-monthly" style="font-weight:700; color:#34d399">$0.00</td>
+        </tr>
+        <tr data-model-id="gemini-2-5-pro">
+          <td><strong>Gemini 2.5 Pro</strong><br><span style="font-size:0.78rem; color:var(--text-muted)">Google • Long-Context Flagship</span></td>
+          <td>$1.250</td>
+          <td>$0.310</td>
+          <td>$5.00</td>
+          <td>2,000,000</td>
+          <td class="calc-monthly" style="font-weight:700; color:#34d399">$0.00</td>
+        </tr>
+        <tr data-model-id="gemini-2-0-flash">
+          <td><strong>Gemini 2.0 Flash</strong><br><span style="font-size:0.78rem; color:var(--text-muted)">Google • Ultra-Fast Multimodal</span></td>
+          <td>$0.100</td>
+          <td>$0.025</td>
+          <td>$0.40</td>
+          <td>1,000,000</td>
+          <td class="calc-monthly" style="font-weight:700; color:#34d399">$0.00</td>
+        </tr>
+        <tr data-model-id="deepseek-v3">
+          <td><strong>DeepSeek V3</strong><br><span style="font-size:0.78rem; color:var(--text-muted)">DeepSeek • Open-Weights Disruptor</span></td>
+          <td>$0.270</td>
+          <td>$0.070</td>
+          <td>$1.10</td>
+          <td>64,000</td>
+          <td class="calc-monthly" style="font-weight:700; color:#34d399">$0.00</td>
+        </tr>
+        <tr data-model-id="deepseek-r1">
+          <td><strong>DeepSeek R1</strong><br><span style="font-size:0.78rem; color:var(--text-muted)">DeepSeek • Open-Source Reasoning</span></td>
+          <td>$0.550</td>
+          <td>$0.140</td>
+          <td>$2.19</td>
+          <td>64,000</td>
+          <td class="calc-monthly" style="font-weight:700; color:#34d399">$0.00</td>
+        </tr>
+        <tr data-model-id="llama-3-3-70b">
+          <td><strong>Llama 3.3 70B (Groq/Together)</strong><br><span style="font-size:0.78rem; color:var(--text-muted)">Meta • Real-Time Voice & Speed</span></td>
+          <td>$0.590</td>
+          <td>$0.590</td>
+          <td>$0.79</td>
+          <td>128,000</td>
+          <td class="calc-monthly" style="font-weight:700; color:#34d399">$0.00</td>
+        </tr>
+        <tr data-model-id="mistral-large-2">
+          <td><strong>Mistral Large 2</strong><br><span style="font-size:0.78rem; color:var(--text-muted)">Mistral AI • European Enterprise Multilingual</span></td>
+          <td>$2.000</td>
+          <td>$2.000</td>
+          <td>$6.00</td>
+          <td>128,000</td>
+          <td class="calc-monthly" style="font-weight:700; color:#34d399">$0.00</td>
+        </tr>
+        <tr data-model-id="amazon-nova-pro">
+          <td><strong>Amazon Nova Pro</strong><br><span style="font-size:0.78rem; color:var(--text-muted)">AWS Bedrock • AWS Enterprise Native</span></td>
+          <td>$0.800</td>
+          <td>$0.200</td>
+          <td>$3.20</td>
+          <td>300,000</td>
+          <td class="calc-monthly" style="font-weight:700; color:#34d399">$0.00</td>
+        </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <script>
+      const MODELS = [{"id": "gpt-4o", "name": "GPT-4o", "provider": "OpenAI", "input_per_1m": 2.5, "output_per_1m": 10.0, "cached_input_per_1m": 1.25, "context_window": 128000, "max_output": 16384, "speed_tps": 110, "tier": "Flagship Multimodal", "best_for": "Complex enterprise automation, multimodal extraction, structured JSON outputs, and high-reliability customer agents.", "strengths": ["Native JSON Schema adherence", "Fast time-to-first-token", "Vision + Audio support", "Strong function calling"]}, {"id": "gpt-4o-mini", "name": "GPT-4o mini", "provider": "OpenAI", "input_per_1m": 0.15, "output_per_1m": 0.6, "cached_input_per_1m": 0.075, "context_window": 128000, "max_output": 16384, "speed_tps": 165, "tier": "High-Efficiency Workhorse", "best_for": "High-volume n8n/Make.com webhooks, email classification, data tagging, and RAG summarization at scale.", "strengths": ["Ultra-low cost", "High throughput", "Replaces GPT-3.5 Turbo", "99% reliability on simple JSON tasks"]}, {"id": "o3-mini", "name": "OpenAI o3-mini", "provider": "OpenAI", "input_per_1m": 1.1, "output_per_1m": 4.4, "cached_input_per_1m": 0.55, "context_window": 200000, "max_output": 100000, "speed_tps": 95, "tier": "Reasoning & Coding", "best_for": "Automated code review, SQL query generation, financial logic validation, and multi-step agentic planning.", "strengths": ["Adjustable reasoning effort", "Superior STEM & coding accuracy", "200K context window", "Cost-effective reasoning"]}, {"id": "claude-3-5-sonnet", "name": "Claude 3.5 Sonnet", "provider": "Anthropic", "input_per_1m": 3.0, "output_per_1m": 15.0, "cached_input_per_1m": 0.3, "context_window": 200000, "max_output": 8192, "speed_tps": 85, "tier": "Flagship Coding & Writing", "best_for": "B2B copywriting, nuanced executive reports, complex code generation, and autonomous computer-use workflows.", "strengths": ["90% prompt caching discount", "Human-like natural prose", "Industry-leading coding benchmark", "Low hallucination rate"]}, {"id": "claude-3-5-haiku", "name": "Claude 3.5 Haiku", "provider": "Anthropic", "input_per_1m": 0.8, "output_per_1m": 4.0, "cached_input_per_1m": 0.08, "context_window": 200000, "max_output": 8192, "speed_tps": 140, "tier": "Fast Sub-Agent Model", "best_for": "Real-time chat widgets, rapid document routing, sentiment analysis, and multi-agent worker nodes.", "strengths": ["90% cache discount", "Fast response latency", "Strong instruction following", "200K context window"]}, {"id": "gemini-2-5-pro", "name": "Gemini 2.5 Pro", "provider": "Google", "input_per_1m": 1.25, "output_per_1m": 5.0, "cached_input_per_1m": 0.31, "context_window": 2000000, "max_output": 8192, "speed_tps": 95, "tier": "Long-Context Flagship", "best_for": "Analyzing entire codebases, 500-page PDF legal contracts, video/audio ingestion, and deep research pipelines.", "strengths": ["Massive 2M token context", "50%+ cheaper than GPT-4o", "Native video & audio understanding", "Context caching support"]}, {"id": "gemini-2-0-flash", "name": "Gemini 2.0 Flash", "provider": "Google", "input_per_1m": 0.1, "output_per_1m": 0.4, "cached_input_per_1m": 0.025, "context_window": 1000000, "max_output": 8192, "speed_tps": 190, "tier": "Ultra-Fast Multimodal", "best_for": "High-frequency scraping, bulk PDF invoice parsing, voice agent backends, and zero-budget startup automations.", "strengths": ["1M context at $0.10/1M", "Blazing 190+ tokens/sec", "Generous free tier on Google AI Studio", "Multimodal native"]}, {"id": "deepseek-v3", "name": "DeepSeek V3", "provider": "DeepSeek", "input_per_1m": 0.27, "output_per_1m": 1.1, "cached_input_per_1m": 0.07, "context_window": 64000, "max_output": 8000, "speed_tps": 75, "tier": "Open-Weights Disruptor", "best_for": "Cost-sensitive batch processing, technical translation, data transformation, and backend cron jobs.", "strengths": ["Automatic disk context caching", "GPT-4 class performance at 1/10th cost", "OpenAI-compatible API"]}, {"id": "deepseek-r1", "name": "DeepSeek R1", "provider": "DeepSeek", "input_per_1m": 0.55, "output_per_1m": 2.19, "cached_input_per_1m": 0.14, "context_window": 64000, "max_output": 8000, "speed_tps": 60, "tier": "Open-Source Reasoning", "best_for": "Complex algorithmic problem solving, quantitative analysis, and automated root-cause debugging.", "strengths": ["Chain-of-thought transparency", "Half the cost of o3-mini", "Self-hostable open weights"]}, {"id": "llama-3-3-70b", "name": "Llama 3.3 70B (Groq/Together)", "provider": "Meta", "input_per_1m": 0.59, "output_per_1m": 0.79, "cached_input_per_1m": 0.59, "context_window": 128000, "max_output": 8192, "speed_tps": 280, "tier": "Real-Time Voice & Speed", "best_for": "Sub-second AI phone callers (Synthflow/Vapi), live customer chat, and privacy-first open-weight deployments.", "strengths": ["280+ tokens/sec on LPU hardware", "Low output token pricing", "Zero vendor lock-in"]}, {"id": "mistral-large-2", "name": "Mistral Large 2", "provider": "Mistral AI", "input_per_1m": 2.0, "output_per_1m": 6.0, "cached_input_per_1m": 2.0, "context_window": 128000, "max_output": 8192, "speed_tps": 90, "tier": "European Enterprise Multilingual", "best_for": "GDPR-compliant European workflows, multilingual customer support (EN/ES/FR/DE), and function calling.", "strengths": ["EU data sovereignty friendly", "Strong multilingual accuracy", "Reliable tool use"]}, {"id": "amazon-nova-pro", "name": "Amazon Nova Pro", "provider": "AWS Bedrock", "input_per_1m": 0.8, "output_per_1m": 3.2, "cached_input_per_1m": 0.2, "context_window": 300000, "max_output": 5000, "speed_tps": 115, "tier": "AWS Enterprise Native", "best_for": "Enterprise AWS Bedrock pipelines, document intelligence, and multimodal workflow orchestration.", "strengths": ["300K context window", "Native AWS IAM & Bedrock integration", "75% cache discount"]}];
+      function recalc() {
+        const runs = Math.max(1, parseFloat(document.getElementById('runsPerDay').value) || 0);
+        const inTok = Math.max(0, parseFloat(document.getElementById('inputTokens').value) || 0);
+        const outTok = Math.max(0, parseFloat(document.getElementById('outputTokens').value) || 0);
+        const cachePct = (parseFloat(document.getElementById('cacheHitPct').value) || 0) / 100;
+        document.getElementById('cacheHitLabel').textContent = Math.round(cachePct * 100) + '% Cached';
+
+        const monthlyRuns = runs * 30;
+        const totalInM = (monthlyRuns * inTok) / 1e6;
+        const totalOutM = (monthlyRuns * outTok) / 1e6;
+        const totalTokensM = totalInM + totalOutM;
+        document.getElementById('totalMonthlyTokens').textContent = totalTokensM.toFixed(1) + 'M';
+
+        let cheapestModel = null;
+        let cheapestVal = Infinity;
+
+        MODELS.forEach(m => {
+          const uncachedInCost = totalInM * (1 - cachePct) * m.input_per_1m;
+          const cachedInCost = totalInM * cachePct * m.cached_input_per_1m;
+          const outCost = totalOutM * m.output_per_1m;
+          const total = uncachedInCost + cachedInCost + outCost;
+
+          const row = document.querySelector(`tr[data-model-id="${m.id}"] .calc-monthly`);
+          if (row) row.textContent = '$' + total.toFixed(2) + '/mo';
+
+          if (total < cheapestVal) {
+            cheapestVal = total;
+            cheapestModel = m.name;
+          }
+        });
+
+        if (cheapestModel) {
+          document.getElementById('cheapestName').textContent = cheapestModel;
+          document.getElementById('cheapestCost').textContent = '$' + cheapestVal.toFixed(2) + ' / month';
+        }
+      }
+      ['runsPerDay', 'inputTokens', 'outputTokens', 'cacheHitPct'].forEach(id => {
+        document.getElementById(id).addEventListener('input', recalc);
+      });
+      recalc();
+    </script>
+    
+    
+    <section class="vault-banner">
+      <div>
+        <span class="badge">INSTANT DOWNLOAD • 10 JSON WORKFLOWS + 50 B2B PROMPTS + EXCEL ROI SHEET</span>
+        <h3>🚀 Skip 40 Hours of Setup: Get The Ultimate AI Automation Vault</h3>
+        <p>Download <strong>10 ready-to-import n8n &amp; Make.com JSON workflows</strong>, <strong>50 XML B2B Prompt Systems</strong>, and our <strong>Agency ROI &amp; Pricing Spreadsheet</strong>.</p>
+      </div>
+      <div style="text-align:right">
+        <div style="margin-bottom:0.5rem">
+          <span class="price-strike">$97</span>
+          <span class="price-tag">$29 USD</span>
+        </div>
+        <a href="https://mateopousa.gumroad.com/l/ai-automation-vault" target="_blank" rel="noopener" class="btn btn-accent">Download Complete Vault &rarr;</a>
+      </div>
+    </section>
+    
+    
+    <section class="card" style="margin-top:1.5rem">
+      <h3>🔥 Recommended AI Automation Stack (Verified Free Tiers &amp; High ROI)</h3>
+      <div class="grid grid-3" style="margin-top:1rem">
+        <div style="padding:1rem; background:var(--bg-elevated); border-radius:0.6rem;">
+          <strong>Make.com</strong>
+          <p style="font-size:0.86rem; color:var(--text-muted); margin:0.4rem 0 0.8rem">Visual No-Code AI Automation Platform (1,000 Free Ops/mo)</p>
+          <a href="https://www.make.com/en/register?pc=airoihub" target="_blank" rel="noopener sponsored" class="btn btn-primary" style="width:100%">Try Make.com Free (1,000 Ops)</a>
+        </div>
+        <div style="padding:1rem; background:var(--bg-elevated); border-radius:0.6rem;">
+          <strong>n8n Cloud</strong>
+          <p style="font-size:0.86rem; color:var(--text-muted); margin:0.4rem 0 0.8rem">Fair-Code Workflow Automation with Native AI Agents</p>
+          <a href="https://n8n.io/?ref=airoihub" target="_blank" rel="noopener sponsored" class="btn btn-primary" style="width:100%">Launch n8n AI Agents</a>
+        </div>
+        <div style="padding:1rem; background:var(--bg-elevated); border-radius:0.6rem;">
+          <strong>CustomGPT.ai</strong>
+          <p style="font-size:0.86rem; color:var(--text-muted); margin:0.4rem 0 0.8rem">Build No-Code RAG Custom Chatbots on Your Business Data</p>
+          <a href="https://customgpt.ai/?fpr=airoihub" target="_blank" rel="noopener sponsored" class="btn btn-primary" style="width:100%">Build Custom RAG Bot</a>
+        </div>
+      </div>
+    </section>
+    
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem">
+      <div>
+        <strong>AI ROI & Automation Hub</strong> — Free Enterprise AI Calculators, Token Pricing Benchmarks & Automation Blueprints<br>
+        <span>Updated for 2026 LLM API Pricing (OpenAI, Anthropic, Google Gemini, DeepSeek, Meta).</span>
+      </div>
+      <div style="display:flex; gap:1.25rem; flex-wrap:wrap">
+        <a href="index.html">Token Calculator</a>
+        <a href="automation-roi-calculator.html">ROI Calculator</a>
+        <a href="comparisons.html">All 66 Model Comparisons</a>
+        <a href="sitemap.xml">Sitemap</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
