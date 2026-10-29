@@ -1,0 +1,87 @@
+{
+  "name": "09 - Stripe Failed Payment & Usage Drop Churn Intervention Agent",
+  "flow": [
+    {
+      "id": 1,
+      "module": "stripe:watchEvents",
+      "version": 1,
+      "parameters": {},
+      "mapper": {},
+      "metadata": {
+        "designer": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    },
+    {
+      "id": 2,
+      "module": "openai-gpt-3:CreateCompletion",
+      "version": 1,
+      "parameters": {
+        "model": "gpt-4o-mini"
+      },
+      "mapper": {
+        "messages": [
+          {
+            "role": "system",
+            "content": "You are a reliable enterprise automation agent. Output clean structured data."
+          },
+          {
+            "role": "user",
+            "content": "Customer {{1.email}} on plan {{1.plan}} triggered event {{1.event_type}}. Draft an empathetic founder check-in email offering a tailored retention incentive."
+          }
+        ],
+        "temperature": 0.2,
+        "max_tokens": 2500
+      },
+      "metadata": {
+        "designer": {
+          "x": 300,
+          "y": 0
+        }
+      }
+    },
+    {
+      "id": 3,
+      "module": "json:ParseJSON",
+      "version": 1,
+      "parameters": {},
+      "mapper": {
+        "json": "{{2.choices[].message.content}}"
+      },
+      "metadata": {
+        "designer": {
+          "x": 600,
+          "y": 0
+        }
+      }
+    },
+    {
+      "id": 4,
+      "module": "gmail:sendEmail",
+      "version": 1,
+      "parameters": {},
+      "mapper": {
+        "content": "{{3.output}}",
+        "status": "completed"
+      },
+      "metadata": {
+        "designer": {
+          "x": 900,
+          "y": 0
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "instant": false,
+    "version": 1,
+    "scenario": {
+      "roundtrips": 1,
+      "maxErrors": 3,
+      "autoCommit": true,
+      "sequential": false
+    }
+  }
+}

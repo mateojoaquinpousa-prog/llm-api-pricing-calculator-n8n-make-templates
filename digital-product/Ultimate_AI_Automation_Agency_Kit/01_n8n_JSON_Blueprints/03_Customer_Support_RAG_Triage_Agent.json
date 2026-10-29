@@ -1,0 +1,151 @@
+{
+  "name": "03 - Tier-1 Support Ticket RAG Classifier & Auto-Drafter",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "support-ticket-triage",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "id": "node-webhook-trigger",
+      "name": "Incoming Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        240,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\"model\": \"claude-3-5-haiku-latest\", \"response_format\": {\"type\": \"json_object\"}, \"temperature\": 0.1, \"messages\": [{\"role\": \"system\", \"content\": \"You are a Senior Customer Success Engineer. Given the customer ticket and retrieved Knowledge Base context, output strict JSON: category (Billing/Technical/Feature_Request/Bug), sentiment_score (-1.0 to 1.0), escalate_to_human (boolean), confidence_score (0-100), and draft_reply_markdown (string).\"}, {\"role\": \"user\", \"content\": \"={{ JSON.stringify($json.body) }}\"}]}"
+      },
+      "id": "node-llm-processor",
+      "name": "AI Agent (claude-3-5-haiku-latest)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        520,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const raw = $input.first().json.choices[0].message.content;\nconst parsed = JSON.parse(raw);\nreturn [{ json: { ...parsed, processed_at: new Date().toISOString() } }];"
+      },
+      "id": "node-json-parser",
+      "name": "Parse & Validate Structured JSON",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        780,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.icp_score || $json.confidence_score || 80 }}",
+              "operation": "largerEqual",
+              "value2": 70
+            }
+          ]
+        }
+      },
+      "id": "node-priority-router",
+      "name": "High Priority Router",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1040,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "channel": "#ai-automation-alerts",
+        "text": "=*[03 - Tier-1 Support Ticket RAG Classifier & Auto-Drafter]* Automated Execution Complete -> Synced to Zendesk / Intercom Draft Note\\n```{{ JSON.stringify($json, null, 2) }}```"
+      },
+      "id": "node-slack-notify",
+      "name": "Sync to Zendesk / Intercom Draft Note",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.2,
+      "position": [
+        1300,
+        220
+      ]
+    }
+  ],
+  "connections": {
+    "Incoming Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "AI Agent (claude-3-5-haiku-latest)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent (claude-3-5-haiku-latest)": {
+      "main": [
+        [
+          {
+            "node": "Parse & Validate Structured JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse & Validate Structured JSON": {
+      "main": [
+        [
+          {
+            "node": "High Priority Router",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "High Priority Router": {
+      "main": [
+        [
+          {
+            "node": "Sync to Zendesk / Intercom Draft Note",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true
+  },
+  "meta": {
+    "templateCredsSetupCompleted": false,
+    "author": "AI ROI & Automation Hub"
+  }
+}

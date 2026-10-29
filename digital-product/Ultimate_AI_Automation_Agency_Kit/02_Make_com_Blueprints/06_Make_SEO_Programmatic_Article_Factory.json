@@ -1,0 +1,87 @@
+{
+  "name": "06 - Programmatic SEO Content Research & WordPress/Webflow Publisher",
+  "flow": [
+    {
+      "id": 1,
+      "module": "google-sheets:watchRows",
+      "version": 1,
+      "parameters": {},
+      "mapper": {},
+      "metadata": {
+        "designer": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    },
+    {
+      "id": 2,
+      "module": "openai-gpt-3:CreateCompletion",
+      "version": 1,
+      "parameters": {
+        "model": "claude-3-5-sonnet-20241022"
+      },
+      "mapper": {
+        "messages": [
+          {
+            "role": "system",
+            "content": "You are a reliable enterprise automation agent. Output clean structured data."
+          },
+          {
+            "role": "user",
+            "content": "Generate a comprehensive 1,800-word technical B2B article optimized for target keyword {{1.keyword}} with comparison tables, FAQ schema, and actionable takeaways."
+          }
+        ],
+        "temperature": 0.2,
+        "max_tokens": 2500
+      },
+      "metadata": {
+        "designer": {
+          "x": 300,
+          "y": 0
+        }
+      }
+    },
+    {
+      "id": 3,
+      "module": "json:ParseJSON",
+      "version": 1,
+      "parameters": {},
+      "mapper": {
+        "json": "{{2.choices[].message.content}}"
+      },
+      "metadata": {
+        "designer": {
+          "x": 600,
+          "y": 0
+        }
+      }
+    },
+    {
+      "id": 4,
+      "module": "wordpress:createPost",
+      "version": 1,
+      "parameters": {},
+      "mapper": {
+        "content": "{{3.output}}",
+        "status": "completed"
+      },
+      "metadata": {
+        "designer": {
+          "x": 900,
+          "y": 0
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "instant": false,
+    "version": 1,
+    "scenario": {
+      "roundtrips": 1,
+      "maxErrors": 3,
+      "autoCommit": true,
+      "sequential": false
+    }
+  }
+}

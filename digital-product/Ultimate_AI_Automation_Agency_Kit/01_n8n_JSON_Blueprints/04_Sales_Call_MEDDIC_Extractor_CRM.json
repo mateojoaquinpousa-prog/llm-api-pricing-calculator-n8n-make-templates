@@ -1,0 +1,151 @@
+{
+  "name": "04 - Zoom/Fireflies Transcript MEDDIC & Follow-Up Agent",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "meeting-transcript-ingest",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "id": "node-webhook-trigger",
+      "name": "Incoming Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        240,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\"model\": \"gemini-2.5-pro\", \"response_format\": {\"type\": \"json_object\"}, \"temperature\": 0.1, \"messages\": [{\"role\": \"system\", \"content\": \"You are a VP of Enterprise Sales. Analyze this call transcript using the MEDDIC framework. Return strict JSON: metrics_mentioned, economic_buyer, decision_criteria, decision_process, identified_pain, champion_name, deal_risk_level (Low/Medium/High), action_items (array), and client_followup_email_body.\"}, {\"role\": \"user\", \"content\": \"={{ JSON.stringify($json.body) }}\"}]}"
+      },
+      "id": "node-llm-processor",
+      "name": "AI Agent (gemini-2.5-pro)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        520,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const raw = $input.first().json.choices[0].message.content;\nconst parsed = JSON.parse(raw);\nreturn [{ json: { ...parsed, processed_at: new Date().toISOString() } }];"
+      },
+      "id": "node-json-parser",
+      "name": "Parse & Validate Structured JSON",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        780,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.icp_score || $json.confidence_score || 80 }}",
+              "operation": "largerEqual",
+              "value2": 70
+            }
+          ]
+        }
+      },
+      "id": "node-priority-router",
+      "name": "High Priority Router",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1040,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "channel": "#ai-automation-alerts",
+        "text": "=*[04 - Zoom/Fireflies Transcript MEDDIC & Follow-Up Agent]* Automated Execution Complete -> Synced to Pipedrive Deal Notes & Gmail Draft\\n```{{ JSON.stringify($json, null, 2) }}```"
+      },
+      "id": "node-slack-notify",
+      "name": "Sync to Pipedrive Deal Notes & Gmail Draft",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.2,
+      "position": [
+        1300,
+        220
+      ]
+    }
+  ],
+  "connections": {
+    "Incoming Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "AI Agent (gemini-2.5-pro)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent (gemini-2.5-pro)": {
+      "main": [
+        [
+          {
+            "node": "Parse & Validate Structured JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse & Validate Structured JSON": {
+      "main": [
+        [
+          {
+            "node": "High Priority Router",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "High Priority Router": {
+      "main": [
+        [
+          {
+            "node": "Sync to Pipedrive Deal Notes & Gmail Draft",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true
+  },
+  "meta": {
+    "templateCredsSetupCompleted": false,
+    "author": "AI ROI & Automation Hub"
+  }
+}

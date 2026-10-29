@@ -1,0 +1,87 @@
+{
+  "name": "07 - LinkedIn & Website Scraper to Hyper-Personalized Cold Email (Instantly/Smartlead)",
+  "flow": [
+    {
+      "id": 1,
+      "module": "webhooks:customWebhook",
+      "version": 1,
+      "parameters": {},
+      "mapper": {},
+      "metadata": {
+        "designer": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    },
+    {
+      "id": 2,
+      "module": "openai-gpt-3:CreateCompletion",
+      "version": 1,
+      "parameters": {
+        "model": "gpt-4o-mini"
+      },
+      "mapper": {
+        "messages": [
+          {
+            "role": "system",
+            "content": "You are a reliable enterprise automation agent. Output clean structured data."
+          },
+          {
+            "role": "user",
+            "content": "Analyze prospect bio {{1.bio}} and company news {{1.company_news}}. Write a 3-sentence zero-fluff cold email opening and value proposition."
+          }
+        ],
+        "temperature": 0.2,
+        "max_tokens": 2500
+      },
+      "metadata": {
+        "designer": {
+          "x": 300,
+          "y": 0
+        }
+      }
+    },
+    {
+      "id": 3,
+      "module": "json:ParseJSON",
+      "version": 1,
+      "parameters": {},
+      "mapper": {
+        "json": "{{2.choices[].message.content}}"
+      },
+      "metadata": {
+        "designer": {
+          "x": 600,
+          "y": 0
+        }
+      }
+    },
+    {
+      "id": 4,
+      "module": "http:ActionSendData",
+      "version": 1,
+      "parameters": {},
+      "mapper": {
+        "content": "{{3.output}}",
+        "status": "completed"
+      },
+      "metadata": {
+        "designer": {
+          "x": 900,
+          "y": 0
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "instant": false,
+    "version": 1,
+    "scenario": {
+      "roundtrips": 1,
+      "maxErrors": 3,
+      "autoCommit": true,
+      "sequential": false
+    }
+  }
+}

@@ -238,6 +238,7 @@ def render_layout(title, description, canonical_path, body_html, config, schema_
         <a href="{prefix}system-prompt-architect.html">Prompt Architect</a>
         <a href="{prefix}json-schema-builder.html">JSON Schema</a>
         <a href="{prefix}agency-pricing-calculator.html">Agency Pricing</a>
+        <a href="{prefix}industries.html">15 Industries</a>
         <a href="{prefix}free-templates.html">Free Templates</a>
         <a href="{prefix}comparisons.html">Model Benchmarks</a>
         <a href="{g_Config['product_url']}" target="_blank" rel="noopener" class="btn btn-accent" style="padding:0.4rem 0.85rem; font-size:0.84rem">Get B2B Vault (${g_Config['price_standard']})</a>

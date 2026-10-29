@@ -1,0 +1,87 @@
+{
+  "name": "08 - YouTube/Podcast Transcript to LinkedIn Carousel, X Thread & Newsletter",
+  "flow": [
+    {
+      "id": 1,
+      "module": "google-drive:watchFiles",
+      "version": 1,
+      "parameters": {},
+      "mapper": {},
+      "metadata": {
+        "designer": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    },
+    {
+      "id": 2,
+      "module": "openai-gpt-3:CreateCompletion",
+      "version": 1,
+      "parameters": {
+        "model": "claude-3-5-sonnet-20241022"
+      },
+      "mapper": {
+        "messages": [
+          {
+            "role": "system",
+            "content": "You are a reliable enterprise automation agent. Output clean structured data."
+          },
+          {
+            "role": "user",
+            "content": "Transform this transcript into: 1) A high-converting 7-post X thread, 2) A story-driven LinkedIn post, and 3) A 500-word executive newsletter issue."
+          }
+        ],
+        "temperature": 0.2,
+        "max_tokens": 2500
+      },
+      "metadata": {
+        "designer": {
+          "x": 300,
+          "y": 0
+        }
+      }
+    },
+    {
+      "id": 3,
+      "module": "json:ParseJSON",
+      "version": 1,
+      "parameters": {},
+      "mapper": {
+        "json": "{{2.choices[].message.content}}"
+      },
+      "metadata": {
+        "designer": {
+          "x": 600,
+          "y": 0
+        }
+      }
+    },
+    {
+      "id": 4,
+      "module": "notion:createPage",
+      "version": 1,
+      "parameters": {},
+      "mapper": {
+        "content": "{{3.output}}",
+        "status": "completed"
+      },
+      "metadata": {
+        "designer": {
+          "x": 900,
+          "y": 0
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "instant": false,
+    "version": 1,
+    "scenario": {
+      "roundtrips": 1,
+      "maxErrors": 3,
+      "autoCommit": true,
+      "sequential": false
+    }
+  }
+}

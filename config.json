@@ -1,0 +1,57 @@
+{
+  "brand": {
+    "name": "AI ROI & Automation Hub",
+    "domain": "https://ai-roi-hub.pages.dev",
+    "tagline": "Free Enterprise AI Calculators, Token Pricing Benchmarks & Automation Blueprints",
+    "support_email": "support@ai-roi-hub.pages.dev"
+  },
+  "gumroad": {
+    "product_name": "The Ultimate AI Agency & Automation Vault (50+ Blueprints, B2B Prompts & ROI Models)",
+    "product_url": "https://mateopousa.gumroad.com/l/ai-automation-vault",
+    "price_standard": 29,
+    "price_original": 97,
+    "discount_code": "LAUNCH20",
+    "badge_text": "INSTANT DOWNLOAD \u2022 10 JSON WORKFLOWS + 50 B2B PROMPTS + EXCEL ROI SHEET"
+  },
+  "affiliates": {
+    "make": {
+      "name": "Make.com",
+      "tagline": "Visual No-Code AI Automation Platform (1,000 Free Ops/mo)",
+      "commission_info": "20% recurring for 24 months",
+      "url": "https://www.make.com/en/register?pc=airoihub",
+      "cta_text": "Try Make.com Free (1,000 Ops)"
+    },
+    "n8n": {
+      "name": "n8n Cloud",
+      "tagline": "Fair-Code Workflow Automation with Native AI Agents",
+      "commission_info": "30% recurring commission",
+      "url": "https://n8n.io/?ref=airoihub",
+      "cta_text": "Launch n8n AI Agents"
+    },
+    "customgpt": {
+      "name": "CustomGPT.ai",
+      "tagline": "Build No-Code RAG Custom Chatbots on Your Business Data",
+      "commission_info": "20% recurring for 2 years",
+      "url": "https://customgpt.ai/?fpr=airoihub",
+      "cta_text": "Build Custom RAG Bot"
+    },
+    "elevenlabs": {
+      "name": "ElevenLabs",
+      "tagline": "Realistic AI Voice Agents & Multilingual Audio API",
+      "commission_info": "22% recurring for 12 months",
+      "url": "https://elevenlabs.io/?from=partnerairoihub",
+      "cta_text": "Test Voice AI Free"
+    },
+    "synthflow": {
+      "name": "Synthflow AI",
+      "tagline": "No-Code AI Phone Callers for Agencies & Local Businesses",
+      "commission_info": "25% recurring commission",
+      "url": "https://synthflow.ai/?ref=airoihub",
+      "cta_text": "Deploy AI Voice Receptionist"
+    }
+  },
+  "analytics": {
+    "google_analytics_id": "",
+    "plausible_domain": ""
+  }
+}

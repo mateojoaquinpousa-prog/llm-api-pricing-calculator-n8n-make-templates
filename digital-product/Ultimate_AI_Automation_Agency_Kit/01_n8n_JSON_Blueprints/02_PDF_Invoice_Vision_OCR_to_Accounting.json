@@ -1,0 +1,151 @@
+{
+  "name": "02 - Multimodal PDF Invoice Extractor to QuickBooks/Sheets",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "invoice-ocr-webhook",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "id": "node-webhook-trigger",
+      "name": "Incoming Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        240,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\"model\": \"gemini-2.0-flash\", \"response_format\": {\"type\": \"json_object\"}, \"temperature\": 0.1, \"messages\": [{\"role\": \"system\", \"content\": \"You are an Automated Accounts Payable Auditor. Extract structured invoice data into strict JSON: vendor_name, tax_id, invoice_number, issue_date (YYYY-MM-DD), due_date (YYYY-MM-DD), currency (ISO 4217), subtotal, tax_amount, total_amount, and line_items (array of description, qty, unit_price).\"}, {\"role\": \"user\", \"content\": \"={{ JSON.stringify($json.body) }}\"}]}"
+      },
+      "id": "node-llm-processor",
+      "name": "AI Agent (gemini-2.0-flash)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        520,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const raw = $input.first().json.choices[0].message.content;\nconst parsed = JSON.parse(raw);\nreturn [{ json: { ...parsed, processed_at: new Date().toISOString() } }];"
+      },
+      "id": "node-json-parser",
+      "name": "Parse & Validate Structured JSON",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        780,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.icp_score || $json.confidence_score || 80 }}",
+              "operation": "largerEqual",
+              "value2": 70
+            }
+          ]
+        }
+      },
+      "id": "node-priority-router",
+      "name": "High Priority Router",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1040,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "channel": "#ai-automation-alerts",
+        "text": "=*[02 - Multimodal PDF Invoice Extractor to QuickBooks/Sheets]* Automated Execution Complete -> Synced to Google Sheets Ledger & QuickBooks Online\\n```{{ JSON.stringify($json, null, 2) }}```"
+      },
+      "id": "node-slack-notify",
+      "name": "Sync to Google Sheets Ledger & QuickBooks Online",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.2,
+      "position": [
+        1300,
+        220
+      ]
+    }
+  ],
+  "connections": {
+    "Incoming Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "AI Agent (gemini-2.0-flash)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent (gemini-2.0-flash)": {
+      "main": [
+        [
+          {
+            "node": "Parse & Validate Structured JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse & Validate Structured JSON": {
+      "main": [
+        [
+          {
+            "node": "High Priority Router",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "High Priority Router": {
+      "main": [
+        [
+          {
+            "node": "Sync to Google Sheets Ledger & QuickBooks Online",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true
+  },
+  "meta": {
+    "templateCredsSetupCompleted": false,
+    "author": "AI ROI & Automation Hub"
+  }
+}

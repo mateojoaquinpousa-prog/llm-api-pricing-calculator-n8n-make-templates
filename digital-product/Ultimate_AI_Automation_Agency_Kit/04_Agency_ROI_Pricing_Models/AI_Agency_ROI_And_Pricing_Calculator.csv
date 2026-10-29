@@ -1,0 +1,7 @@
+Workflow Name,Tasks / Month,Manual Minutes / Task,Staff Hourly Cost ($),Monthly Manual Labor Cost ($),LLM Model Used,Monthly API + Make/n8n Cost ($),Net Monthly Client Savings ($),Annual Client ROI ($),Suggested Agency Setup Fee ($),Suggested Monthly Retainer ($)
+Inbound Lead Enrichment & Scoring,500,15,35,=B2*(C2/60)*D2,GPT-4o mini,14.5,=E2-G2,=H2*12,1500,350
+Automated PDF Invoice OCR to ERP,1200,8,28,=B3*(C3/60)*D3,Gemini 2.0 Flash,19.0,=E3-G3,=H3*12,2200,450
+Tier-1 Customer Support RAG Triage,1500,12,25,=B4*(C4/60)*D4,Claude 3.5 Haiku,42.0,=E4-G4,=H4*12,2500,600
+Sales Call MEDDIC CRM Sync,160,25,45,=B5*(C5/60)*D5,Gemini 2.5 Pro,28.0,=E5-G5,=H5*12,1800,400
+Programmatic SEO Content Pipeline,30,180,50,=B6*(C6/60)*D6,Claude 3.5 Sonnet,35.0,=E6-G6,=H6*12,2000,500
+TOTAL PORTFOLIO,=SUM(B2:B6),,,=SUM(E2:E6),,=SUM(G2:G6),=SUM(H2:H6),=SUM(I2:I6),=SUM(J2:J6),=SUM(K2:K6)
