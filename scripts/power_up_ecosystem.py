@@ -234,4 +234,3 @@ if __name__ == "__main__":
     cfg = json.loads(CONFIG_FILE.read_text(encoding="utf-8"))
     build_industry_pages(cfg)
     create_free_sample_zip_for_github_release(cfg)
-    publish_more_devto_articles("UdkVtL8k2LiTpdVQ7AQk3ZRd")

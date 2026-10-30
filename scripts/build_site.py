@@ -180,12 +180,15 @@ def render_layout(title, description, canonical_path, body_html, config, schema_
         <h3>🚀 Skip 40 Hours of Setup: Get The Ultimate AI Automation Vault</h3>
         <p>Download <strong>10 ready-to-import n8n &amp; Make.com JSON workflows</strong>, <strong>50 XML B2B Prompt Systems</strong>, and our <strong>Agency ROI &amp; Pricing Spreadsheet</strong>.</p>
       </div>
-      <div style="text-align:right">
-        <div style="margin-bottom:0.5rem">
+      <div style="text-align:right; display:flex; flex-direction:column; gap:0.5rem; align-items:flex-end">
+        <div>
           <span class="price-strike">${g_Config['price_original']}</span>
           <span class="price-tag">${g_Config['price_standard']} USD</span>
         </div>
-        <a href="{g_Config['product_url']}" target="_blank" rel="noopener" class="btn btn-accent">Download Complete Vault &rarr;</a>
+        <div style="display:flex; gap:0.6rem; flex-wrap:wrap; justify-content:flex-end">
+          <a href="https://mateopousa.gumroad.com/l/free-n8n-ai-starter-pack" target="_blank" rel="noopener" class="btn btn-outline">🎁 Free Starter Pack ($0+)</a>
+          <a href="{g_Config['product_url']}" target="_blank" rel="noopener" class="btn btn-accent">Download Complete Vault &rarr;</a>
+        </div>
       </div>
     </section>
     """
